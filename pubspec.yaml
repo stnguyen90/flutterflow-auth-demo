@@ -80,6 +80,7 @@ dependencies:
 dependency_overrides:
   http: ^1.2.2
   uuid: ^4.0.0
+  collection: ^1.19.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -135,4 +136,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
