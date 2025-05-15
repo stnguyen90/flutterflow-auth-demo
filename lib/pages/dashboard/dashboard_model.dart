@@ -8,6 +8,17 @@ import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
+  ///  Local state fields for this page.
+
+  appwrite_authentication_kit_l1f78z_data_schema.AppwriteUserStruct? user;
+  void updateUserStruct(
+      Function(
+              appwrite_authentication_kit_l1f78z_data_schema.AppwriteUserStruct)
+          updateFn) {
+    updateFn(user ??=
+        appwrite_authentication_kit_l1f78z_data_schema.AppwriteUserStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getCurrentUser] action in Dashboard widget.

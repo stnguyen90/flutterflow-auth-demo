@@ -364,7 +364,7 @@ class _AuthMobileCardWidgetState extends State<AuthMobileCardWidget> {
               height: 44.0,
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: Color(0x66818186),
+              color: FlutterFlowTheme.of(context).secondary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     font: GoogleFonts.interTight(
                       fontWeight: FontWeight.w500,

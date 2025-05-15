@@ -36,6 +36,15 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.userResult =
           await appwrite_authentication_kit_l1f78z_actions.getCurrentUser();
+      _model.updateUserStruct(
+        (e) => e
+          ..id = _model.userResult?.user.id
+          ..email = _model.userResult?.user.email
+          ..name = _model.userResult?.user.name
+          ..emailVerified = _model.userResult?.user.emailVerified
+          ..status = _model.userResult?.user.status,
+      );
+      safeSetState(() {});
       if (!_model.userResult!.success) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

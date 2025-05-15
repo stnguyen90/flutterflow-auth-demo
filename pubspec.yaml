@@ -28,7 +28,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   appwrite_authentication_kit_l1f78z:
-    path: ./dependencies/appwrite_authentication_kit_l1f78z # 0.0.2
+    path: ./dependencies/appwrite_authentication_kit_l1f78z # 0.0.3
   auto_size_text: ^3.0.0
   cached_network_image: ^3.4.1
   cached_network_image_platform_interface: ^4.1.1
