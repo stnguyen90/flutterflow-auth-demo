@@ -8,6 +8,7 @@ import 'flutter_flow/flutter_flow_util.dart';
 
 import 'package:appwrite_authentication_kit_l1f78z/app_state.dart'
     as appwrite_authentication_kit_l1f78z_app_state;
+
 import 'package:appwrite_authentication_kit_l1f78z/library_values.dart'
     as appwrite_authentication_kit_l1f78z_library_values;
 
@@ -17,7 +18,7 @@ void main() async {
   usePathUrlStrategy();
 
   appwrite_authentication_kit_l1f78z_library_values.FFLibraryValues()
-      .appwriteEndpoint = 'https://cloud.appwrite.io/v1';
+      .appwriteEndpoint = 'https://fra.cloud.appwrite.io/v1';
   appwrite_authentication_kit_l1f78z_library_values.FFLibraryValues()
       .appwriteProjectId = 'delete';
 
