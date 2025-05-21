@@ -288,7 +288,7 @@ class _AuthLoginMobileCardWidgetState extends State<AuthLoginMobileCardWidget> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                _model.signInResult!.error,
+                                _model.signInResult!.formattedError,
                                 style: TextStyle(
                                   color: Color(0xFF19191C),
                                   fontWeight: FontWeight.w500,
@@ -310,7 +310,7 @@ class _AuthLoginMobileCardWidgetState extends State<AuthLoginMobileCardWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).secondary,
+                        color: Color(0xFF19191C),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(

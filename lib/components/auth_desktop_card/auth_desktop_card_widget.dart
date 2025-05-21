@@ -419,7 +419,7 @@ class _AuthDesktopCardWidgetState extends State<AuthDesktopCardWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).secondary,
+                        color: Color(0xFF19191C),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(
@@ -442,7 +442,6 @@ class _AuthDesktopCardWidgetState extends State<AuthDesktopCardWidget> {
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
-                        hoverColor: Color(0xFF19191C),
                       ),
                     ),
                   ),
