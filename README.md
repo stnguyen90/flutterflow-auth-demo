@@ -1,4 +1,4 @@
-# Appwrite - Auth
+# Appwrite - Auth - Steven
 
 A new Flutter project.
 

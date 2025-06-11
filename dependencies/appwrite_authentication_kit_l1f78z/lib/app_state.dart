@@ -23,31 +23,17 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Appwrite configuration state
-  String _appwriteConfig = '';
-  String get appwriteConfig => _appwriteConfig;
-  set appwriteConfig(String value) {
-    _appwriteConfig = value;
-  }
-
-  /// Current Appwrite user data
-  String _appwriteUser = '';
-  String get appwriteUser => _appwriteUser;
-  set appwriteUser(String value) {
+  /// Stores the authenticated user's profile and session details (id, email,
+  /// name, status, etc.) globally so user info is accessible throughout the
+  /// app.
+  AppwriteUserStruct _appwriteUser = AppwriteUserStruct.fromSerializableMap(
+      jsonDecode('{\"emailVerified\":\"false\"}'));
+  AppwriteUserStruct get appwriteUser => _appwriteUser;
+  set appwriteUser(AppwriteUserStruct value) {
     _appwriteUser = value;
   }
 
-  /// Appwrite endpoint URL
-  String _appwriteEndpoint = '';
-  String get appwriteEndpoint => _appwriteEndpoint;
-  set appwriteEndpoint(String value) {
-    _appwriteEndpoint = value;
-  }
-
-  /// Appwrite project ID
-  String _appwriteProjectId = '';
-  String get appwriteProjectId => _appwriteProjectId;
-  set appwriteProjectId(String value) {
-    _appwriteProjectId = value;
+  void updateAppwriteUserStruct(Function(AppwriteUserStruct) updateFn) {
+    updateFn(_appwriteUser);
   }
 }

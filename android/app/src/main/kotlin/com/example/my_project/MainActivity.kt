@@ -1,4 +1,4 @@
-package com.mycompany.appwriteauth
+package io.appwrite.flutterflowauthdemo
 
 import io.flutter.embedding.android.FlutterActivity
 

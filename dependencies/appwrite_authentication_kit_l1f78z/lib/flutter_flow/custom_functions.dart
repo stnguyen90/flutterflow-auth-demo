@@ -98,22 +98,3 @@ String? handleError(
       };
   }
 }
-
-String? appwriteUserResponse() {
-  return '''
-{
-  "success": false,
-  "error": null,
-  "errorCode": null,
-  "errorType": null,
-  "formattedError": null,
-  "user": {
-    "id": "",
-    "email": "",
-    "name": "",
-    "emailVerified": false,
-    "status": ""
-  }
-}
-''';
-}

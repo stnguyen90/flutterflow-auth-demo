@@ -9,35 +9,34 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:appwrite/appwrite.dart';
 import 'dart:convert';
+import 'package:appwrite/appwrite.dart';
 import '/custom_code/actions/initialize.dart';
 
-Future<AppwriteUserResponseStruct?> signOut() async {
+Future<AppwriteUserResponseStruct> signOut() async {
   try {
-    // Delete the current session
+    // Delete current session
     await account.deleteSession(sessionId: 'current');
 
-    // Clear the app state
+    // Clear app state
     FFAppState().update(() {
-      FFAppState().appwriteUser = '';
-      FFAppState().appwriteConfig = '';
+      FFAppState().appwriteUser = AppwriteUserStruct(
+        id: '',
+        email: '',
+        name: '',
+        emailVerified: false,
+        status: '',
+      );
     });
 
     // Return success response
     return AppwriteUserResponseStruct(
       success: true,
-      user: null,
-      error: null,
-      errorCode: null,
-      errorType: null,
-      formattedError: null,
     );
   } on AppwriteException catch (e) {
     // Handle Appwrite-specific errors
     return AppwriteUserResponseStruct(
       success: false,
-      user: null,
       error: e.message,
       errorCode: e.code,
       errorType: e.type,
@@ -47,7 +46,6 @@ Future<AppwriteUserResponseStruct?> signOut() async {
     // Handle unexpected errors
     return AppwriteUserResponseStruct(
       success: false,
-      user: null,
       error: e.toString(),
       errorCode: 500,
       errorType: 'UNKNOWN_ERROR',

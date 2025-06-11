@@ -18,9 +18,9 @@ void main() async {
   usePathUrlStrategy();
 
   appwrite_authentication_kit_l1f78z_library_values.FFLibraryValues()
-      .appwriteEndpoint = 'https://fra.cloud.appwrite.io/v1';
+      .appwriteEndpoint = 'https://nyc.cloud.appwrite.io/v1';
   appwrite_authentication_kit_l1f78z_library_values.FFLibraryValues()
-      .appwriteProjectId = 'delete';
+      .appwriteProjectId = '6848cb13003bec141a74';
 
   final appwrite_authentication_kit_l1f78zAppState =
       appwrite_authentication_kit_l1f78z_app_state.FFAppState();
@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Appwrite - Auth',
+      title: 'Appwrite - Auth - Steven',
       scrollBehavior: MyAppScrollBehavior(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

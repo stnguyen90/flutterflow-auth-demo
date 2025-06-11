@@ -9,94 +9,80 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import '/custom_code/actions/index.dart';
-import '/flutter_flow/custom_functions.dart';
-
-import 'package:appwrite/appwrite.dart';
 import 'dart:convert';
+import 'package:appwrite/appwrite.dart';
 import '/custom_code/actions/initialize.dart';
 
-Future<AppwriteUserResponseStruct?> signUpWithEmailAndPassword(
+Future<AppwriteUserResponseStruct> signUpWithEmailAndPassword(
   String email,
   String password,
-  String? name,
+  String name,
 ) async {
   try {
-    // First try to create the account
-    try {
-      await account.create(
-        userId: ID.unique(),
-        email: email,
-        password: password,
-        name: name ?? '',
-      );
-    } on AppwriteException catch (e) {
-      // Handle account creation errors
-      return AppwriteUserResponseStruct(
-        success: false,
-        user: null,
-        error: e.message,
-        errorCode: e.code,
-        errorType: e.type,
-        formattedError: handleError(e.message, e.code, 'sign up'),
-      );
-    }
+    // Create user account
+    final newUser = await account.create(
+      userId: ID.unique(),
+      email: email,
+      password: password,
+      name: name,
+    );
 
-    // If account creation successful, try to create session
-    try {
-      await account.createEmailPasswordSession(
-        email: email,
-        password: password,
-      );
+    // Create email session
+    await account.createEmailPasswordSession(
+      email: email,
+      password: password,
+    );
 
-      // Get and store user data after successful login
-      final user = await account.get();
+    // Create AppwriteUserStruct
+    final userData = AppwriteUserStruct(
+      id: newUser.$id ?? '',
+      email: newUser.email ?? '',
+      name: newUser.name ?? '',
+      emailVerified: newUser.emailVerification ?? false,
+      status: newUser.status.toString(),
+    );
 
-      // Create AppwriteUser object
-      final userData = AppwriteUserStruct(
-        id: user.$id ?? '',
-        email: user.email ?? '',
-        name: user.name ?? '',
-        emailVerified: user.emailVerification ?? false,
-        status: user.status.toString(),
-      );
+    // Store in AppState
+    FFAppState().update(() {
+      FFAppState().appwriteUser = userData;
+    });
 
-      // Update app state
-      FFAppState().update(() {
-        FFAppState().appwriteUser = jsonEncode({
-          'id': user.$id,
-          'email': user.email,
-          'name': user.name,
-          'emailVerified': user.emailVerification,
-          'status': user.status.toString(),
-        });
-      });
-
-      // Return success response with user data
-      return AppwriteUserResponseStruct(
-        success: true,
-        user: userData,
-        error: null,
-        errorCode: null,
-        errorType: null,
-        formattedError: null,
+    // Return success response
+    return AppwriteUserResponseStruct(
+      success: true,
+      user: userData,
+    );
+  } on AppwriteException catch (e) {
+    // Handle Appwrite-specific errors
+    FFAppState().update(() {
+      FFAppState().appwriteUser = AppwriteUserStruct(
+        id: '',
+        email: '',
+        name: '',
+        emailVerified: false,
+        status: '',
       );
-    } on AppwriteException catch (e) {
-      // Handle session creation errors
-      return AppwriteUserResponseStruct(
-        success: false,
-        user: null,
-        error: e.message,
-        errorCode: e.code,
-        errorType: e.type,
-        formattedError: handleError(e.message, e.code, 'sign in'),
-      );
-    }
-  } catch (e) {
-    // Handle unexpected errors
+    });
     return AppwriteUserResponseStruct(
       success: false,
-      user: null,
+      error: e.message,
+      errorCode: e.code,
+      errorType: e.type,
+      formattedError: handleError(e.message, e.code, 'sign up'),
+    );
+  } catch (e) {
+    // Handle unexpected errors
+    FFAppState().update(() {
+      FFAppState().appwriteUser = AppwriteUserStruct(
+        id: '',
+        email: '',
+        name: '',
+        emailVerified: false,
+        status: '',
+      );
+    });
+    return AppwriteUserResponseStruct(
+      success: false,
       error: e.toString(),
       errorCode: 500,
       errorType: 'UNKNOWN_ERROR',

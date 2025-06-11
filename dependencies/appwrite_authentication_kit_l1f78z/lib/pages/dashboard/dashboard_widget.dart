@@ -1,15 +1,12 @@
-import '/backend/schema/structs/index.dart';
 import '/components/btn_sign_out_desktop/btn_sign_out_desktop_widget.dart';
 import '/components/btn_sign_out_mobile/btn_sign_out_mobile_widget.dart';
 import '/components/btn_sign_out_tablet/btn_sign_out_tablet_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_model.dart';
@@ -38,27 +35,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DashboardModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userResult = await actions.getCurrentUser();
-      if (_model.userResult?.success == true) {
-        safeSetState(() {});
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              _model.userResult!.formattedError,
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
-      }
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -389,8 +365,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                _model.userResult?.user?.name,
-                                '[\$.name]',
+                                FFAppState().appwriteUser.name,
+                                '\$.name',
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
@@ -495,8 +471,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             Text(
                                               valueOrDefault<String>(
-                                                _model.userResult?.user?.name,
-                                                '[\$.name]',
+                                                FFAppState().appwriteUser.name,
+                                                '\$.name',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -574,8 +550,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             Text(
                                               valueOrDefault<String>(
-                                                _model.userResult?.user?.email,
-                                                '[\$.email]',
+                                                FFAppState().appwriteUser.email,
+                                                '\$.email',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -653,8 +629,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             Text(
                                               valueOrDefault<String>(
-                                                _model.userResult?.user?.id,
-                                                '[\$.id]',
+                                                FFAppState().appwriteUser.id,
+                                                '\$.id',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -905,8 +881,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
-                              _model.userResult?.user?.name,
-                              '[\$.name]',
+                              FFAppState().appwriteUser.name,
+                              '\$.name',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .displaySmall
@@ -1014,8 +990,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  _model.userResult?.user?.name,
-                                                  '[\$.name]',
+                                                  FFAppState()
+                                                      .appwriteUser
+                                                      .name,
+                                                  '\$.name',
                                                 ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -1095,9 +1073,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  _model
-                                                      .userResult?.user?.email,
-                                                  '[\$.email]',
+                                                  FFAppState()
+                                                      .appwriteUser
+                                                      .email,
+                                                  '\$.email',
                                                 ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -1177,8 +1156,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  _model.userResult?.user?.id,
-                                                  '[\$.id]',
+                                                  FFAppState().appwriteUser.id,
+                                                  '\$.id',
                                                 ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -1442,8 +1421,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  _model.userResult?.user?.name,
-                                  '[\$.name]',
+                                  FFAppState().appwriteUser.name,
+                                  '\$.name',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
@@ -1547,8 +1526,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              _model.userResult?.user?.name,
-                                              '[\$.name]',
+                                              FFAppState().appwriteUser.name,
+                                              '\$.name',
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -1622,8 +1601,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              _model.userResult?.user?.email,
-                                              '[\$.email]',
+                                              FFAppState().appwriteUser.email,
+                                              '\$.email',
                                             ).maybeHandleOverflow(
                                               maxChars: 22,
                                               replacement: '…',
@@ -1700,8 +1679,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              _model.userResult?.user?.id,
-                                              '[\$.id]',
+                                              FFAppState().appwriteUser.id,
+                                              '\$.id',
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
