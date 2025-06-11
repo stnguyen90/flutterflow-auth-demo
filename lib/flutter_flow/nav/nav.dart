@@ -8,6 +8,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
+import 'package:appwrite_authentication_kit_l1f78z/index.dart'
+    as $appwrite_authentication_kit_l1f78z;
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -30,40 +32,77 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
-      initialLocation: '/',
-      debugLogDiagnostics: true,
-      refreshListenable: appStateNotifier,
-      navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => WelcomeWidget(),
-      routes: [
-        FFRoute(
-          name: '_initialize',
-          path: '/',
-          builder: (context, _) => WelcomeWidget(),
-        ),
-        FFRoute(
-          name: WelcomeWidget.routeName,
-          path: WelcomeWidget.routePath,
-          builder: (context, params) => WelcomeWidget(),
-        ),
-        FFRoute(
-          name: LoginWidget.routeName,
-          path: LoginWidget.routePath,
-          builder: (context, params) => LoginWidget(),
-        ),
-        FFRoute(
-          name: DashboardWidget.routeName,
-          path: DashboardWidget.routePath,
-          builder: (context, params) => DashboardWidget(),
-        ),
-        FFRoute(
-          name: SignUpWidget.routeName,
-          path: SignUpWidget.routePath,
-          builder: (context, params) => SignUpWidget(),
-        )
-      ].map((r) => r.toRoute(appStateNotifier)).toList(),
-    );
+GoRouter createRouter(AppStateNotifier appStateNotifier) {
+  $appwrite_authentication_kit_l1f78z.initializeRoutes(
+    welcomeWidgetName: 'appwrite_authentication_kit_l1f78z.Welcome',
+    welcomeWidgetPath: '/welcome_appwrite-authentication-kit-l1f78z',
+    signUpWidgetName: 'appwrite_authentication_kit_l1f78z.SignUp',
+    signUpWidgetPath: '/signUp_appwrite-authentication-kit-l1f78z',
+    loginWidgetName: 'appwrite_authentication_kit_l1f78z.Login',
+    loginWidgetPath: '/login_appwrite-authentication-kit-l1f78z',
+    dashboardWidgetName: 'appwrite_authentication_kit_l1f78z.Dashboard',
+    dashboardWidgetPath: '/dashboard_appwrite-authentication-kit-l1f78z',
+  );
+
+  return GoRouter(
+    initialLocation: '/',
+    debugLogDiagnostics: true,
+    refreshListenable: appStateNotifier,
+    navigatorKey: appNavigatorKey,
+    errorBuilder: (context, state) => WelcomeWidget(),
+    routes: [
+      FFRoute(
+        name: '_initialize',
+        path: '/',
+        builder: (context, _) => WelcomeWidget(),
+      ),
+      FFRoute(
+        name: WelcomeWidget.routeName,
+        path: WelcomeWidget.routePath,
+        builder: (context, params) => WelcomeWidget(),
+      ),
+      FFRoute(
+        name: LoginWidget.routeName,
+        path: LoginWidget.routePath,
+        builder: (context, params) => LoginWidget(),
+      ),
+      FFRoute(
+        name: DashboardWidget.routeName,
+        path: DashboardWidget.routePath,
+        builder: (context, params) => DashboardWidget(),
+      ),
+      FFRoute(
+        name: SignUpWidget.routeName,
+        path: SignUpWidget.routePath,
+        builder: (context, params) => SignUpWidget(),
+      ),
+      FFRoute(
+        name: $appwrite_authentication_kit_l1f78z.WelcomeWidget.routeName,
+        path: $appwrite_authentication_kit_l1f78z.WelcomeWidget.routePath,
+        builder: (context, params) =>
+            $appwrite_authentication_kit_l1f78z.WelcomeWidget(),
+      ),
+      FFRoute(
+        name: $appwrite_authentication_kit_l1f78z.SignUpWidget.routeName,
+        path: $appwrite_authentication_kit_l1f78z.SignUpWidget.routePath,
+        builder: (context, params) =>
+            $appwrite_authentication_kit_l1f78z.SignUpWidget(),
+      ),
+      FFRoute(
+        name: $appwrite_authentication_kit_l1f78z.LoginWidget.routeName,
+        path: $appwrite_authentication_kit_l1f78z.LoginWidget.routePath,
+        builder: (context, params) =>
+            $appwrite_authentication_kit_l1f78z.LoginWidget(),
+      ),
+      FFRoute(
+        name: $appwrite_authentication_kit_l1f78z.DashboardWidget.routeName,
+        path: $appwrite_authentication_kit_l1f78z.DashboardWidget.routePath,
+        builder: (context, params) =>
+            $appwrite_authentication_kit_l1f78z.DashboardWidget(),
+      )
+    ].map((r) => r.toRoute(appStateNotifier)).toList(),
+  );
+}
 
 extension NavParamExtensions on Map<String, String?> {
   Map<String, String> get withoutNulls => Map.fromEntries(
